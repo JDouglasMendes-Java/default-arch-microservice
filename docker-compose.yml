@@ -1,15 +1,44 @@
-version: '2'
-services:
-    message-server:
+version: '3'
+services:    
+    db-postgres-compose:
+        image: postgres
+        environment:
+            POSTGRES_PASSWORD: "^4vBdKzF28Ab"
+        ports:
+            - "15432:5432"
+        volumes:
+            - F:/VOLUMES/PostgreSQL:/var/lib/postgresql/data 
+        networks:
+            - db-network
+        
+    client-pgadmin-compose:
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: "dba@admin.com"
+            PGADMIN_DEFAULT_PASSWORD: "^4vBdKzF28Ab"
+        ports:
+            - "16543:80"
+        depends_on:
+            - db-postgres-compose
+        networks:
+            - db-network  
+    default-arch:
         container_name: default-arch-microservice
         build:
             context: default-arch-microservice
             dockerfile: Dockerfile
         image: default-arch-microservice:latest
         ports:
-            - 8091:8091
+            - 8091:8081
+        depends_on:
+            - client-pgadmin-compose
         networks:
             - default-network
+            - db-network                     
 networks:
     default-network:
         driver: bridge
+    db-network:
+        driver: bridge        
+
+    
