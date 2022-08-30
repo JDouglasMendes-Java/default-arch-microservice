@@ -1,0 +1,15 @@
+version: '2'
+services:
+    message-server:
+        container_name: default-arch-microservice
+        build:
+            context: default-arch-microservice
+            dockerfile: Dockerfile
+        image: default-arch-microservice:latest
+        ports:
+            - 8091:8091
+        networks:
+            - default-network
+networks:
+    default-network:
+        driver: bridge
