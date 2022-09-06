@@ -1,4 +1,16 @@
 # default-arch-microservice
 
-Prometheus
-<http://localhost:9090/>
+[x] Swagger
+
+[ ] sda
+
+## Port
+
+- Local:
+- DEV:
+- HML:
+- PRD:
+
+## Docker
+
+docker build -t ms-products-img .
