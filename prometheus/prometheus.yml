@@ -1,0 +1,16 @@
+global:
+  scrape_interval: 5s
+scrape_configs:
+- job_name: prometheus-java
+  scrape_interval: 15s
+  scrape_timeout: 10s
+  metrics_path: /metrics
+  scheme: http
+  static_configs:
+  - targets:
+    - prometheus-java:9090
+- job_name: default-arch
+  metrics_path: /actuator/prometheus
+  static_configs:
+  - targets:
+    - default-arch:8081
