@@ -39,8 +39,9 @@ public class ProductService {
                             ProductDto.class);
     }
 
-    public void delete(Long id) {
+    public boolean delete(Long id) {
         repository.deleteById(id);
+        return true;
     }
 
     public PageList<List<ProductDto>> getAll(Pageable pageable) {
