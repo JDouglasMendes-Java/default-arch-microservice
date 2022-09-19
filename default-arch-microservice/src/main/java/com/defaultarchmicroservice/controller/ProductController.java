@@ -101,7 +101,7 @@ public class ProductController {
                     }
             ),
     })
-    @PutMapping("/{id}")
+    @PutMapping
     public ResponseEntity<ProductDto> put(@RequestBody ProductUpdateForm form) {
         return  service.get(form.getId())
                 .map(x -> ResponseEntity.ok().body(service.update(form)))
